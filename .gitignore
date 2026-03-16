@@ -1,0 +1,16 @@
+# container images
+*.sif
+
+
+# sequencing data
+*.bam
+*.bai
+*.vcf
+*.vcf.gz
+
+# logs
+*.out
+*.err
+
+# temp
+*.tmp

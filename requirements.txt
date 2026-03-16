@@ -1,0 +1,57 @@
+Bootstrap: docker
+From: ubuntu:22.04
+
+%labels
+    Author Kaizen Nathani
+    Description "HP indel rate profiler using samtools (and optional python/pysam)"
+
+%files
+    hp_indelrate.sh /opt/hpindel/hp_indelrate.sh
+    resources/hg19.fa /opt/hpindel/resources/hg19.fa
+    resources/hg19.fa.fai /opt/hpindel/resources/hg19.fa.fai
+    resources/ezh2_hp.bed /opt/hpindel/resources/ezh2_hp.bed
+    resources/ezh2_nonhp.bed /opt/hpindel/resources/ezh2_nonhp.bed
+
+%post
+    set -e
+    export DEBIAN_FRONTEND=noninteractive
+
+    apt-get update
+    apt-get install -y --no-install-recommends \
+        bash \
+        gawk \
+        coreutils \
+        procps \
+        ca-certificates \
+        python3 \
+        python3-pip \
+        samtools \
+        bedtools
+
+    # Optional: install pysam for future python helpers
+    python3 -m pip install --no-cache-dir pysam
+
+    chmod +x /opt/hpindel/hp_indelrate.sh
+
+    apt-get clean
+    rm -rf /var/lib/apt/lists/*
+
+%environment
+    export PATH=/opt/hpindel:$PATH
+    export LC_ALL=C
+    export LANG=C
+
+%runscript
+    exec /opt/hpindel/hp_indelrate.sh "$@"
+
+%test
+    bash --version
+    awk --version | head -n 1
+    samtools --version | head -n 1
+    bedtools --version
+    python3 --version
+    python3 -c "import pysam; print(pysam.__version__)"
+    test -f /opt/hpindel/resources/hg19.fa
+    test -f /opt/hpindel/resources/hg19.fa.fai
+    test -f /opt/hpindel/resources/ezh2_hp.bed
+    test -f /opt/hpindel/resources/ezh2_nonhp.bed
