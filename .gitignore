@@ -1,6 +1,9 @@
 # container images
 *.sif
 
+#fasta files
+*.fa
+*.fa.fai
 
 # sequencing data
 *.bam
