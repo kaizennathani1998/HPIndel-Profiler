@@ -2,7 +2,7 @@
 Command-line tool for detecting and quantifying indel events in homopolymer and non-homopolymer regions from BAM files using BED-defined genomic intervals. Outputs a .txt file with tab delimated information of input file, hp indel rates, non-hp indel rates and ratio
 
 # Inputs required:
-1) Reference genome fasta and fasta index file (Eg: hg19.fa, hg19.fai.fa)
+1) Reference genome fasta and fasta index file (Eg: hg19.fa, hg19.fai.fa) ** in resources folder**
 2) Homopolymer region BED file
 3) Homopolymer region BED file
 
