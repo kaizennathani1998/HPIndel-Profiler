@@ -14,10 +14,10 @@ Command-line tool for detecting and quantifying indel events in homopolymer and 
 # Apptainer run
 apptainer pull hp_indelrate.sif docker://docker.io/kaizennathani1998/hp-indelrate:latest
 
-apptainer run \
-  hp_indelrate.sif \
-  <BAM_FILE> \
-  <HP_BED> <NON-HP_BED>
+apptainer run \\
+  hp_indelrate.sif \\
+  <BAM_FILE> \\
+  <HP_BED> <NON-HP_BED> \\
   <output summary fille path.txt>
 
 
