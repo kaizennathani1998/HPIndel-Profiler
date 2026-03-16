@@ -7,11 +7,15 @@ Command-line tool for detecting and quantifying indel events in homopolymer and 
 3) Homopolymer region BED file
 
 # Usage
+```bash
 ./hp_indelrate.sh <BAM_FILE> <resources/HP_region.bed> <resources/NON-HP_region.bed> <output_file_path>
+```
 
 ### Note: Input BED files should be in resources folder only 
 
 # Apptainer run
+
+```bash
 apptainer pull hp_indelrate.sif docker://docker.io/kaizennathani1998/hp-indelrate:latest
 
 apptainer run \\
@@ -20,6 +24,6 @@ apptainer run \\
   <HP_BED> <NON-HP_BED> \\
   <output summary fille path.txt>
 
-
+```
 
 <img width="1144" height="763" alt="image" src="https://github.com/user-attachments/assets/0a3af9e0-1dbb-4547-abc5-bd286d3bacfc" />
